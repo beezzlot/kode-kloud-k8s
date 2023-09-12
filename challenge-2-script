@@ -1,0 +1,29 @@
+#/var/logs/pods - for tshoot
+
+# systemctl restart kubelet
+#.kube/config
+
+# /etc/kubernetes/manifests/
+  
+
+
+
+### data-pv
+kubectl apply -f fileserver-pv.yaml
+
+### data-pvc
+kubectl apply -f fileserver-pvc.yaml
+
+### gop-file-server
+kubectl apply -f /fileserver-pod.yaml
+
+### gop-fx-service
+kubectl apply -f fileserver-svc.yaml
+
+### Validate pv & pvc
+kubectl get pv
+kubectl get pvc
+
+### Validate pod
+kubectl get pods
+
