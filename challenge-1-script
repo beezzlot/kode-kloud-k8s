@@ -1,0 +1,31 @@
+### PVC
+kubectl apply -f jekyll-pvc.yaml
+
+### POD
+kubectl apply -f jekyll-pod.yaml
+
+   
+### Service
+kubectl apply -f jekyll-node-service.yaml
+
+### Role
+kubectl create role developer-role --resource=pods,svc,pvc --verb="*" -n development
+
+## RoleBinding
+kubectl create rolebinding developer-rolebinding --role=developer-role --user=martin -n development
+
+## Martin
+
+kubectl config set-credentials martin --client-certificate ./martin.crt --client-key ./martin.key
+kubectl config set-context developer --cluster kubernetes --user martin
+
+## kube-config
+
+kubectl config use-context developer
+
+##To validate the access,
+kubectl get all -n development
+
+kubectl get rolebindings -n development
+
+kubectl config get-contexts
